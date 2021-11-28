@@ -1,0 +1,40 @@
+{
+	"name": "astro-localization",
+	"version": "0.0.1",
+	"description": "Localization utils for astro",
+	"homepage": "https://github.com/warpsio/astro-localization",
+	"bugs": {
+		"url": "https://github.com/warpsio/astro-localization/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/warpsio/astro-localization"
+	},
+	"files": [
+		"src/index.js",
+		"src/LanguageSwitcher.astro",
+		"src/SetDefaultLanguage.astro",
+		"src/Translate.astro"
+	],
+	"exports": "./src/index.js",
+	"keywords": [
+		"astro-component",
+		"astro",
+		"astro localization",
+		"astro-localization"
+	],
+	"author": "Giulio Zanchetta",
+	"license": "MIT",
+	"scripts": {
+		"dev": "astro dev",
+		"preview": "astro preview",
+		"format": "yarn prettier -w ./src",
+		"release": "standard-version"
+	},
+	"devDependencies": {
+		"astro": "^0.21.4",
+		"prettier": "^2.4.1",
+		"prettier-plugin-astro": "^0.0.9",
+		"standard-version": "^9.3.2"
+	}
+}
