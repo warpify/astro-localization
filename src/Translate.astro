@@ -1,14 +1,11 @@
 ---
-import Debug from 'astro/debug';
-
-var defaultLang = 'en';
-
 interface Props {
   map: object
   key: string
+  defaultLang: string
 }
 
-const { map, key } = Astro.props as Props
+const { key, map = [] } = Astro.props as Props
 
 var translations = [];
 
@@ -30,8 +27,8 @@ Object.entries(map).forEach(entry => {
 });
 
 ---
-
-{translations.map(({ lang, label }) => (
-	<span lang={lang}>{label}</span>
-))}
-
+{(translations && translations.length) ? translations.map(({ lang, label }) => (
+		<span lang={lang}>{label}</span>
+)) : (
+	<span>{key}</span>
+)}
