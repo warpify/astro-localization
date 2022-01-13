@@ -1,6 +1,6 @@
 {
 	"name": "astro-localization",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Localization utils for astro",
 	"homepage": "https://github.com/warpsio/astro-localization",
 	"bugs": {
