@@ -1,6 +1,6 @@
 {
 	"name": "astro-localization",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Localization utils for astro",
 	"homepage": "https://github.com/warpsio/astro-localization",
 	"bugs": {
@@ -32,9 +32,10 @@
 		"release": "standard-version"
 	},
 	"devDependencies": {
-		"astro": "^0.21.4",
-		"prettier": "^2.4.1",
-		"prettier-plugin-astro": "^0.0.9",
+		"astro": "latest",
+		"prettier": "^2.5.1",
+		"prettier-plugin-astro": "^0.0.12",
+		"sass": "^1.49.8",
 		"standard-version": "^9.3.2"
 	}
 }

@@ -1,6 +1,6 @@
 <script>
 	const storedLanguage = localStorage.getItem("language");
-	const preferredLanguage = (window.navigator.userLanguage || window.navigator.language)?.substring(0,2);
+	const preferredLanguage = (window.navigator.userLanguage || window.navigator.language)?.substring(0, 2);
 	const language = typeof storedLanguage === "string" ? storedLanguage : preferredLanguage;
 	document.documentElement.lang = language ? language : "en";
 	localStorage.setItem("language", language);
