@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/base.astro";
 import { Translate } from "../index.js";
-import { SetDefaultLanguage } from "../index.js";
 import { LanguageSwitcher } from "../index.js";
 
 import it from "../data/localization/it.json";
@@ -11,9 +10,7 @@ var lamp = { it: it, en: en };
 ---
 
 <Layout>
-	<SetDefaultLanguage />
 	<LanguageSwitcher />
-
 	<br />
 	<Translate lmap={lamp} key="test-key" />
 	<br />

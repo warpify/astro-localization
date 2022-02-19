@@ -1,3 +1,2 @@
 export { default as LanguageSwitcher } from "./LanguageSwitcher.astro";
-export { default as SetDefaultLanguage } from "./SetDefaultLanguage.astro";
 export { default as Translate } from "./Translate.astro";
