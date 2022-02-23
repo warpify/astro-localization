@@ -36,5 +36,8 @@
 		"prettier-plugin-astro": "^0.0.12",
 		"sass": "^1.49.8",
 		"standard-version": "^9.3.2"
+	},
+	"dependencies": {
+		"astro-icon": "^0.6.0"
 	}
 }

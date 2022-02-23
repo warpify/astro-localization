@@ -27,14 +27,6 @@ Object.entries(lmap).forEach((entry) => {
 
 {translations && translations.length ? translations.map(({ lang, label }) => <span lang={lang}>{label}</span>) : <span>{key}</span>}
 
-<script hoist>
-	const storedLanguage = localStorage.getItem("language");
-	const preferredLanguage = (window.navigator.userLanguage || window.navigator.language)?.substring(0, 2);
-	const language = typeof storedLanguage === "string" ? storedLanguage : preferredLanguage;
-	document.documentElement.lang = language ? language : "en";
-	localStorage.setItem("language", language);
-</script>
-
 <style global lang="scss">
 	html[lang] [lang] {
 		display: none;

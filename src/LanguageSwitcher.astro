@@ -1,10 +1,48 @@
 ---
-// TODO: Improve by gettings languages automatically
+import { Icon } from "astro-icon";
 
-// let localizations = [ { key: 'en', label: 'English' }, { key: 'it', label: 'Italian' } ];
-let localizations = ["it", "en"];
+interface Language {
+	name?: string;
+	icon?: string;
+}
+
+interface Props {
+	languages?: Language[];
+	lmap?: object[];
+	defaultLanguage?: string;
+	type?: string;
+}
+
+let {
+	languages,
+	lmap,
+	defaultLanguage,
+	type = "rotate"
+} = Astro.props as Props;
+
+function getIconForLanguage(language: string) {
+	// Find icon by string
+	let icon = "ic:sharp-flag-circle";
+	return icon;
+}
+
+if (lmap && !languages) {
+	let langs = Object.keys(lmap);
+	languages = langs.map(lang => {
+		return {
+			name: lang,
+			icon: getIconForLanguage(lang)
+		};
+	});
+}
+
+if (!languages) {
+	languages = [
+		{ name: "it", icon: "emojione-v1:flag-for-italy" },
+		{ name: "en", icon: "emojione-v1:flag-for-united-kingdom" }
+	]
+}
 ---
-
 
 <script hoist>
 	const LANGUAGE_STORAGE_KEY = "language";
@@ -17,8 +55,23 @@ let localizations = ["it", "en"];
 		var currentLanguage = document.documentElement.lang;
 		languageSwitcher.value = currentLanguage;
 	});
-	
+
 </script>
+
+<script hoist>
+	// Set default language
+	const storedLanguage = localStorage.getItem("language");
+	const preferredLanguage = (window.navigator.userLanguage || window.navigator.language)?.substring(0, 2);
+	const language = typeof storedLanguage === "string" ? storedLanguage : preferredLanguage;
+	document.documentElement.lang = language ? language : "en";
+	localStorage.setItem("language", language);
+</script>
+
+<select title="Language switcher" id="language-switcher" class="language-switcher" onchange="selectLanguage(this.options[this.selectedIndex].value)">
+	<>
+	{languages.map(({ name, icon }) => <option value={name}>{name}</option>)}
+	</>
+</select>
 
 <style lang="scss">
 	select {
@@ -46,9 +99,3 @@ let localizations = ["it", "en"];
 		}
 	}
 </style>
-
-<select title="Language switcher" id="language-switcher" onchange="selectLanguage(this.options[this.selectedIndex].value)">
-	<>
-	{localizations.map((lang) => <option value={lang}>{lang}</option>)}
-	</>
-</select>
