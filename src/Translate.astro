@@ -27,7 +27,7 @@ Object.entries(lmap).forEach((entry) => {
 
 {translations && translations.length ? translations.map(({ lang, label }) => <span lang={lang}>{label}</span>) : <span>{key}</span>}
 
-<style global lang="scss">
+<style is:global lang="scss">
 	html[lang] [lang] {
 		display: none;
 	}

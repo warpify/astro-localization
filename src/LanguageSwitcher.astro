@@ -1,6 +1,4 @@
 ---
-import { Icon } from "astro-icon";
-
 interface Language {
 	name?: string;
 	icon?: string;
@@ -13,12 +11,7 @@ interface Props {
 	type?: string;
 }
 
-let {
-	languages,
-	lmap,
-	defaultLanguage,
-	type = "rotate"
-} = Astro.props as Props;
+let { languages, lmap, defaultLanguage, type = "rotate" } = Astro.props as Props;
 
 function getIconForLanguage(language: string) {
 	// Find icon by string
@@ -28,7 +21,7 @@ function getIconForLanguage(language: string) {
 
 if (lmap && !languages) {
 	let langs = Object.keys(lmap);
-	languages = langs.map(lang => {
+	languages = langs.map((lang) => {
 		return {
 			name: lang,
 			icon: getIconForLanguage(lang)
@@ -40,38 +33,9 @@ if (!languages) {
 	languages = [
 		{ name: "it", icon: "emojione-v1:flag-for-italy" },
 		{ name: "en", icon: "emojione-v1:flag-for-united-kingdom" }
-	]
+	];
 }
 ---
-
-<script hoist>
-	const LANGUAGE_STORAGE_KEY = "language";
-	function selectLanguage(language) {
-		document.documentElement.lang = language;
-		localStorage.setItem(LANGUAGE_STORAGE_KEY, document.documentElement.lang);
-	}
-	window.addEventListener('load', (event) => {
-		let languageSwitcher = document.getElementById("language-switcher");
-		var currentLanguage = document.documentElement.lang;
-		languageSwitcher.value = currentLanguage;
-	});
-
-</script>
-
-<script hoist>
-	// Set default language
-	const storedLanguage = localStorage.getItem("language");
-	const preferredLanguage = (window.navigator.userLanguage || window.navigator.language)?.substring(0, 2);
-	const language = typeof storedLanguage === "string" ? storedLanguage : preferredLanguage;
-	document.documentElement.lang = language ? language : "en";
-	localStorage.setItem("language", language);
-</script>
-
-<select title="Language switcher" id="language-switcher" class="language-switcher" onchange="selectLanguage(this.options[this.selectedIndex].value)">
-	<>
-	{languages.map(({ name, icon }) => <option value={name}>{name}</option>)}
-	</>
-</select>
 
 <style lang="scss">
 	select {
@@ -99,3 +63,31 @@ if (!languages) {
 		}
 	}
 </style>
+
+<select title="Language switcher" id="language-switcher" class="language-switcher" onchange="selectLanguage(this.options[this.selectedIndex].value)">
+	<>
+	{languages.map(({ name, icon }) => <option value={name}>{name}</option>)}
+	</>
+</select>
+
+<script>
+	// Set default language
+	const storedLanguage = localStorage.getItem("language");
+	const preferredLanguage = (window.navigator.userLanguage || window.navigator.language)?.substring(0, 2);
+	const language = typeof storedLanguage === "string" ? storedLanguage : preferredLanguage;
+	document.documentElement.lang = language ? language : "en";
+	localStorage.setItem("language", language);
+
+	const LANGUAGE_STORAGE_KEY = "language";
+	function selectLanguage(language) {
+		document.documentElement.lang = language;
+		localStorage.setItem(LANGUAGE_STORAGE_KEY, document.documentElement.lang);
+	}
+	window.selectLanguage = selectLanguage;
+
+	window.addEventListener("load", (event) => {
+		let languageSwitcher = document.getElementById("language-switcher");
+		var currentLanguage = document.documentElement.lang;
+		languageSwitcher.value = currentLanguage;
+	});
+</script>
